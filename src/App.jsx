@@ -22,8 +22,10 @@ const data =  async () => {
 
 const Clicked = (e) => {
      data();
-     setName('');
      setTemp('');
+     setName('');
+        setSky('');
+        setSubmit('');
 }
 
 
