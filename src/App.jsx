@@ -1,13 +1,14 @@
 import react, { useState, useEffect } from "react";
 
 const App = () => {
-    const[name , setName]=useState("Karachi");
+    const [name , setName]=useState("Karachi");
     const [temp , setTemp]=useState('');
     const [submit , setSubmit]=useState('');
+    const [sky , setSky]=useState('');
      
+
  const change = (e) => {
     setName(e.target.value);
-
 }
 
 const data =  async () => {
@@ -15,16 +16,15 @@ const data =  async () => {
     const data = await response.json();
     {data.cod==400? alert('Please write Something') :setTemp(data.main.temp)}
     console.log(data);
-    // setTemp(data.main.temp)
-   setSubmit(name);
+    setSky(data.weather[0].description);
+    setSubmit(name);
 }
 
 const Clicked = (e) => {
      data();
      setName('');
+     setTemp('');
 }
-// not found hook 
-
 
 
 
@@ -38,11 +38,11 @@ return (
         <button onClick={Clicked}>🔍</button>
         </div> 
         <div className="name"> <h1>{submit} </h1>
+        {sky}
         {/* {name.length===''?<h2>Please Write Any City Name To get the current weather</h2>:null }  */}
         {temp===''?null : <h2>{temp}°C</h2>}
+        
         </div>
-
-
 
         </div>
     </div>
